@@ -1,0 +1,21 @@
+[user]
+	email = ferszcik@gmail.com
+	name = Ferszcik
+
+[color]
+	status = auto
+	diff = true
+	grep = true
+
+[core]
+	editor = vim
+
+[alias]
+	s = status
+	au = add -u
+	can = commit --amend --no-edit
+	pufwl = push --force-with-lease
+	p = pull
+	po = pull origin
+	co = checkout
+
