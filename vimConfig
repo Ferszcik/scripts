@@ -11,10 +11,10 @@ set incsearch                   " show search results as you type
 set showmatch                   " shows matching brackets
 set ruler                       " always shows location in file (line#)
 set showmode                    " always show current VIM mode
-set undofile                    " enable undo after file reopening
 set clipboard=unnamedplus       " copy to global clipboard
 set tabstop=4                   " set tab width to 4 spaces
 
+"set undofile                   " enable undo after file reopening
 "set cursorline                 " highlight line where cursor is located
 
 "sudo apt install vim-gtk3 for proper clipboard functioning
