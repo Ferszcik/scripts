@@ -1,0 +1,16 @@
+ENV['VAGRANT_DEFAULT_PROVIDER'] = 'libvirt'
+
+Vagrant.configure("2") do |config|
+	config.vm.define "centos0" do |web|	
+		config.vm.box = "generic/centos0"
+		config.vm.provision :shell, path: "startupScript.sh", run: 'always', privileged: true
+		config.vm.boot_timeout = 120
+		
+		config.vm.provider :libvirt do |libvirt|
+    		libvirt.storage :file, :size => '10G', :type => 'qcow2'
+			libvirt.memory = 1024
+			libvirt.cpus = 2
+		end
+	end
+	
+end
