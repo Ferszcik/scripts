@@ -7,9 +7,21 @@
         variables used in script are declared in config file.
         Reason for that is to avoid eg. rm -rf ${DIR}/*
 
+        Function can be used individually or as a part of pyScriptTemplate.
+        Set interactive flag up to your preferences.
+
     @parameters
         1) --config Name of config file with variables declarations
         2) --script Name of script which you want to verify
+
+    @date
+        25-mar-2021
+
+    @author
+        Maciej Ferszt
+
+    @version
+        0.1v
 '''
 
 ''' Import Section '''
@@ -17,7 +29,8 @@ import os, sys, pathlib, re, subprocess, argparse
 
 ''' Argument parser '''
 def argParse():
-    scriptChecker = argparse.ArgumentParser(description='Scritp for comparing variables from config and script')
+    scriptChecker = argparse.ArgumentParser(description=sys.modules[__name__].__doc__,
+                                            formatter_class=argparse.RawDescriptionHelpFormatter)
 
     scriptChecker.add_argument('--script',
                             '-s',
@@ -34,20 +47,22 @@ def argParse():
     scriptChecker.add_argument('--interactive', 
                             '-i',
                             action='store_true',
+                            dest='interactive',
                             help='Set script into interactive mode')
 
     scriptChecker.add_argument('--non-interactive', 
                             '-ni',
                             action='store_false',
+                            dest='interactive',
                             help='Set script into non-interactive mode')
 
-    scriptChecker.set_defaults(feature=True)
+    scriptChecker.set_defaults(interactive=True)
 
     return scriptChecker.parse_args()
 
 '''
     @function
-        readVariablesFromConfig
+        readVariablesFromConfig()
 
     @description
         Function takes config file as a parameter.
@@ -74,7 +89,7 @@ def readVariablesFromConfig(configFile):
 
 '''
     @function
-        readVariablesFromScript
+        readVariablesFromScript()
 
     @description
         Function takes script as a parameter.
@@ -94,10 +109,17 @@ def readVariablesFromScript(scriptFile):
 
     return variablesList
 
-''' Main function '''
+'''
+    @function
+        main()
+
+    @description
+        Main function of the script, runs parsing functions for config and script files and compares them.
+        Depending on compare result and interactive mode it might prompt user to decide if proceed with errors.
+'''
 def main():
     ''' Execute parse_args() '''
-    args = argparse()
+    args = argParse()
 
     configFilePath = os.path.join(pathlib.Path(__file__).parent, args.config)
     scriptFilePath = os.path.join(pathlib.Path(__file__).parent, args.script)
