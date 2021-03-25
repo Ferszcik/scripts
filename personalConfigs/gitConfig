@@ -11,12 +11,17 @@
 	editor = vim
 
 [alias]
+	c = clone
 	s = status
+	a = add
 	au = add -u
+	c = commit
 	can = commit --amend --no-edit
 	pufwl = push --force-with-lease
 	p = pull
 	po = pull origin
+	f = fetch
+	pu = push
 	co = checkout
 	l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 

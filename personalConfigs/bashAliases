@@ -1,0 +1,10 @@
+# Listing aliases
+alias ll='ls -alF --color=auto'
+alias la='ls -a'
+alias ls='ls -h --color=auto'
+
+# Git alias
+alias g=git
+
+# Python alias
+alias py=python3
